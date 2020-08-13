@@ -1,0 +1,24 @@
+.alert_danger{
+    color:white;
+    font-size: .8em;
+    background-image: linear-gradient(180deg,#e74a3b 10%,#be2617 100%);
+    width: 100%;
+    margin: 20px 0px;
+    border-radius: 5px;
+    padding: 5px 5px;
+}
+
+.form-inline-block{
+    display: inline-block !important;
+}
+.display-none{
+    display: none !important;
+}
+.content{
+    padding: 4% 4% 4% 4% !important;
+    min-width: 255px !important;
+    background: #f3f3f3;
+    border: 2px solid #e6e6e6;
+    height: 75px;
+    border-radius: 5px;
+}
