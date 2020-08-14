@@ -8,11 +8,12 @@ class Zona extends Model
 {
     protected $table = 'zonas';
     protected $primaryKey = 'id';
-    protected $fillable = ['nombre','estatus'];
+    protected $fillable = ['nombre','estatus','slug'];
 
     public function scopeGetZonas($query,$status){
         return $query->getZonasWithStatus($status)->orderWithDateDesc();
     }
+    
     public function scopeGetZonasWithStatus($query,$status){
         return $query->where('estatus',$status);
     }

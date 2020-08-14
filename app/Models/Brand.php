@@ -9,6 +9,11 @@ class Brand extends Model
     protected $table = 'brands';
     protected $fillable = ['nombre','estatus'];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function scopeGetBrands($query,$status)
     {
         return $query->getBrandsWithStatus($status)->orderByDateDesc();

@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new \App\Models\User();
-        $user->email = '163174@ids.upchiapas.edu.mx';
+        $user->email = 'ed@ed.com';
         $user->password = 'secret';
         $user->nombre    = 'Jesus';
         $user->apellido  = 'Gonzalez';
