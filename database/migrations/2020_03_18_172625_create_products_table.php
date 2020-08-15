@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('codigo');
+            $table->string('slug')->unique();
             $table->enum('estatus',['activo','inactivo'])->default('activo');
             $table->integer('brand_id')->unsigned();
             $table->foreign('brand_id')->references('id')->on('brands');

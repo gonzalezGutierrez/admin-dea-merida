@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $table = 'products';
-    protected $fillable = ['nombre','estatus','brand_id','codigo'];
+    protected $fillable = ['nombre','estatus','brand_id','codigo','slug'];
 
     public function marca(){
         return $this->belongsTo(Brand::class,'brand_id');

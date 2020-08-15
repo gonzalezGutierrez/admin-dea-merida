@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'nombre'=>'required',
             'apellido'=>'required',
-            'email'=>''
+            'email'=>'required'
         ];
     }
 }

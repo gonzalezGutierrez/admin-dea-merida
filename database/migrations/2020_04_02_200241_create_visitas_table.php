@@ -22,11 +22,9 @@ class CreateVisitasTable extends Migration
             $table->integer('tienda_id')->unsigned();
             $table->foreign('tienda_id')->references('id')->on('stores');
 
-            $table->string('estado');
-            $table->string('ciudad');
-
-            $table->date('fecha_visita');
-
+            $table->integer('ubication_id')->unsigned();
+            $table->foreign('ubication_id')->references('id')->on('ubications');
+            
             $table->timestamps();
         });
     }

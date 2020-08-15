@@ -66,6 +66,7 @@ class UserController extends Controller
             return redirect('/admin/usuarios');
         }catch(\Exception $e){
             dd($e);
+            dd($e);
         }
     }
 

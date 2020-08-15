@@ -25,5 +25,17 @@ Route::namespace('Api')->group(function (){
     Route::get('zonas','ZonaController@index');
     Route::post('users','UserController@store');
 
+    Route::post('zonas_activas','UserController@zonasActivas');
+    Route::get('grupos','GrupoController@index');
+
+    //
+    Route::get('zona/{slug}','ZonaController@tiendas');
+    Route::get('marca/{slug}','BrandController@products');
+
+    // Ubications
+    Route::post('ubication','UbicationController@store');
+    Route::get('ubication/{id}','UbicationController@show');
+    Route::put('ubication/{id}','UbicationController@update');
+    Route::delete('ubication/{id}','UbicationController@destroy');
 
 });

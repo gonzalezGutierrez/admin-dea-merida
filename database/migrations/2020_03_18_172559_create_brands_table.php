@@ -17,15 +17,11 @@ class CreateBrandsTable extends Migration
             $table->increments('id');
             $table->string('nombre',32);
             $table->enum('estatus',['activo','inactivo'])->default('activo');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('brands');

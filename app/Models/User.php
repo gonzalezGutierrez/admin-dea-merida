@@ -9,7 +9,7 @@ class User extends Model
 {
     protected  $table = 'users';
     protected  $primaryKey = 'id';
-    protected  $fillable = ['email','password','nombre','apellido','telefono','zona_id','rol_id','estatus'];
+    protected  $fillable = ['email','password','nombre','apellido','telefono','grupo_id','rol_id','estatus'];
 
     public function auth($credentials)
     {
