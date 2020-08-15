@@ -20,8 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::namespace('Api')->group(function (){
+
     Route::get('grupos','GrupoController@index');
     Route::get('zonas','ZonaController@index');
-
     Route::post('users','UserController@store');
+
+
 });
