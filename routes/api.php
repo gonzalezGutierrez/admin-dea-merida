@@ -21,14 +21,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('Api')->group(function (){
     Route::get('grupos','GrupoController@index');
-    Route::get('zonas','ZonaController@index');
     Route::post('users','UserController@store');
-    Route::post('zonas_activas','UserController@zonasActivas');
-    Route::get('grupos','GrupoController@index');
-
-    // 
-    Route::get('zona/{slug}','ZonaController@tiendas');
+    //
     Route::get('marca/{slug}','BrandController@products');
+    
+    // Zonas
+    Route::get('zona/{slug}','ZonaController@tiendas');
+    Route::get('zonas','ZonaController@index');
+    Route::post('zonas_activas','UserController@zonasActivas');
 
     // Ubications
     Route::post('ubication','UbicationController@store');
@@ -36,5 +36,9 @@ Route::namespace('Api')->group(function (){
     Route::put('ubication/{id}','UbicationController@update');
     Route::delete('ubication/{id}','UbicationController@destroy');
 
-    
+    //Images
+    Route::post('add_image','ProductImageController@store');
+    Route::delete('delete_image/{id}','ProductImageController@delete');
+
+
 });
