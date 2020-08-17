@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUbicationsTable extends Migration
+class CreateProductImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateUbicationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ubications', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->double('latitud');
-            $table->double('longitud');
+            $table->integer('product_id')->unsigned();
+            $table->string('url');
+            $table->boolean('cover_page');
             $table->timestamps();
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateUbicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ubications');
+        Schema::dropIfExists('product_images');
     }
 }
