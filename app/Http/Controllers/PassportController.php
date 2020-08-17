@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 class PassportController extends Controller
 {
@@ -16,12 +16,6 @@ class PassportController extends Controller
     }
     public function login(Request $request)
     {
-        // $credentials = $request->only(['email','password']);
-        // $logged = $this->user->auth($credentials);
-        // return ["asd"=>$logged];
-        // if($logged)
-        //     return "Logueado";
-        // return "error";
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']
@@ -45,7 +39,18 @@ class PassportController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
+        $user = auth()->user();
+        $user->tokens->each(function ($token, $key){
+            $token->delete();
+        });
+        return response()->json(['res' => true, 'message' => "Hasta luego"],200);
+    }
+
+
+    public function info_user(Request $request)
+    {
+        $user = auth()->user();
+        return response()->json(['res' => true, 'user' => $user],200);
     }
 
 

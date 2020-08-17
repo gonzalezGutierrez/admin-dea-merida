@@ -22,16 +22,13 @@ class UserController extends Controller
     public function zonasActivas(Request $request)
     {
         //El usuario se obtiene con el Auth
-        $user = User::find($request->user_id);
+        $user = auth()->user();
+        $user = User::find($user->id);
         $zonas_id = DB::table('groups_zonas')->where('grupo_id', $user->grupo_id)->pluck('zona_id');
         $zonas = Zona::find($zonas_id);
         return $zonas;
     }
     
-
-
-
-
     public function store(Request $request)
     {
         try{
@@ -41,21 +38,5 @@ class UserController extends Controller
         }catch(\Exception $e){
             return $e;
         }
-    }
-    public function show($id)
-    {
-        //
-    }
-    public function edit($id)
-    {
-        //
-    }
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    public function destroy($id)
-    {
-        //
     }
 }
