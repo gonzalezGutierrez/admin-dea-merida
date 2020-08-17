@@ -43,3 +43,10 @@ Route::namespace('Api')->group(function (){
     Route::delete('delete_image/{id}','ProductImageController@delete');
 
 });
+
+    Route::post('register', "PassportController@register");
+    Route::post('login', "PassportController@login");
+
+    Route::group(['middleware'=>'auth:api'], function(){
+        Route::post('logout', "PassportController@logout");
+    });

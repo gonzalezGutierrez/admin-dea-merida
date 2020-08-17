@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+
 
 class User extends Model
 {
+    use HasApiTokens, Notifiable;
     protected  $table = 'users';
     protected  $primaryKey = 'id';
     protected  $fillable = ['email','password','nombre','apellido','telefono','grupo_id','rol_id','estatus'];
@@ -61,7 +66,7 @@ class User extends Model
         return $this->delete();
     }
     public function setPasswordAttribute($value){
-        $this->attributes['password'] = bcrypt($value);
+        $this->attributes['password'] = Hash::make($value);
     }
 
 }
