@@ -46,6 +46,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
         Route::post('add_image','Api\ProductImageController@store');
         Route::delete('delete_image/{id}','Api\ProductImageController@delete');
         // Zonas
-        Route::get('zona/{slug}','ZonaController@tiendas');
-        Route::get('zonas','ZonaController@index');
+        Route::get('zona/{slug}','Api\ZonaController@tiendas');
+        Route::get('zonas','Api\ZonaController@index');
     });
