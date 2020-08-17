@@ -18,44 +18,34 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::namespace('Api')->group(function (){
-
-    Route::get('grupos','GrupoController@index');
-    Route::post('users','UserController@store');;
-
-    // 
-    Route::get('marca/{slug}','BrandController@products');
+    // Rutas libres. 
+    Route::namespace('Api')->group(function (){
+        Route::get('grupos','GrupoController@index');
+        Route::post('users','UserController@store');;
+    });
     
-    // Zonas
-    Route::get('zona/{slug}','ZonaController@tiendas');
-    Route::get('zonas','ZonaController@index');
-
-    // Ubications
-    // Route::post('ubication','UbicationController@store');
-    Route::get('ubication/{id}','UbicationController@show');
-    // Route::put('ubication/{id}','UbicationController@update');
-    // Route::delete('ubication/{id}','UbicationController@destroy');
-});
-
     Route::post('register', "PassportController@register");
     Route::post('login', "PassportController@login");
 
+
+    //Rutas protegidas
     Route::group(['middleware'=>'auth:api'], function(){
 
         Route::post('logout', "PassportController@logout");
-
+        //Prods
+        Route::get('marca/{slug}','BrandController@products');
         // User
         Route::post('zonas_activas','Api\UserController@zonasActivas');
         Route::post('info_user','PassportController@info_user');
-
         // Ubications
         Route::post('ubication','Api\UbicationController@store');
         Route::put('ubication/{id}','Api\UbicationController@update');
         Route::delete('ubication/{id}','Api\UbicationController@destroy');
-
+        Route::get('ubication/{id}','UbicationController@show');
         //Images
         Route::post('add_image','Api\ProductImageController@store');
         Route::delete('delete_image/{id}','Api\ProductImageController@delete');
-
+        // Zonas
+        Route::get('zona/{slug}','ZonaController@tiendas');
+        Route::get('zonas','ZonaController@index');
     });
