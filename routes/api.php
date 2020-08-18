@@ -33,7 +33,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
         Route::post('logout', "PassportController@logout");
         //Prods
-        Route::get('marca/{slug}','BrandController@products');
+        Route::get('marca/{slug}','Api\BrandController@products');
         // User
         Route::post('zonas_activas','Api\UserController@zonasActivas');
         Route::post('info_user','PassportController@info_user');
@@ -41,7 +41,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
         Route::post('ubication','Api\UbicationController@store');
         Route::put('ubication/{id}','Api\UbicationController@update');
         Route::delete('ubication/{id}','Api\UbicationController@destroy');
-        Route::get('ubication/{id}','UbicationController@show');
+        Route::get('ubication/{id}','Api\UbicationController@show');
         //Images
         Route::post('add_image','Api\ProductImageController@store');
         Route::delete('delete_image/{id}','Api\ProductImageController@delete');

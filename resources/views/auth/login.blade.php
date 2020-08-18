@@ -65,11 +65,14 @@
                                     </button>
                                     <hr>
                                 </form>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>
-                                </div>
-                                <div class="text-center">
                                     <a class="small" href="register.html">Crear cuenta</a>
+
+                                    @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
