@@ -28,7 +28,7 @@ class PassportController extends Controller
         $status = $user->estatus;
         if($status=="inactivo"){
             return response()->json([
-                'message' => 'No se encontro usuario o ha sido eliminado'
+                'message' => 'Cuenta inactiva'
             ],401);
         }
 

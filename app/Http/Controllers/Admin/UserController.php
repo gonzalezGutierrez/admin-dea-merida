@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         try{
             $this->user->getUserWithId($idUser)->edit($request->all());
-            alert()->success('Usuario registrado correctamente', 'Optional Title');
+            alert()->success('El usuario fue actualizado correctamente','Registro correcto');
             return redirect('/admin/usuarios');
         }catch(\Exception $e){
             dd($e);
