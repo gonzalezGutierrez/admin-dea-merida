@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\Config\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Zona;
 use Illuminate\Http\Request;
+use App\Http\Requests\ZonaRequest;
+
 
 class ZonaController extends Controller
 {
@@ -20,7 +22,8 @@ class ZonaController extends Controller
     public function show($idZona){
         return $this->zona->getZonaWithId($idZona);
     }
-    public function store(Request $request){
+    
+    public function store(ZonaRequest $request){
         try{
             $request['slug'] = $this->zona->setSlug($request->nombre);
             $this->zona->add($request->all());

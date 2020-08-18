@@ -7,6 +7,8 @@ use App\Models\Group;
 use App\Models\Zona;
 use App\Models\ZonaGrupo;
 use Illuminate\Http\Request;
+use App\Http\Requests\GrupoRequest;
+
 use DB;
 
 class GroupController extends Controller
@@ -21,7 +23,7 @@ class GroupController extends Controller
         $groups = $this->group->getGroups($status)->get();
         return view('admin.groups.index',['groups'=>$groups]);
     }
-    public function store(Request $request)
+    public function store(GrupoRequest $request)
     {
         DB::beginTransaction();
         try {

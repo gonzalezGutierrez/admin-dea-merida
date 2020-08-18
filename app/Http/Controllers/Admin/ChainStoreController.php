@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\Config\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CadenasRequest;
 
 use App\Models\Chain;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class ChainStoreController extends Controller
         $chains = $this->chain->getChains($status)->get();
         return view('admin.chains.index',['chains'=>$chains]);
     }
-    public function store(Request $request)
+    public function store(CadenasRequest $request)
     {
         try {
             $this->chain->add($request->all());

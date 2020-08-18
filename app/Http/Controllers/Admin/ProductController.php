@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductoRequest;
 
 class ProductController extends Controller
 {
@@ -20,7 +21,7 @@ class ProductController extends Controller
         $products = $this->product->getProducts($status)->get();
         return view('admin.products.index',['products'=>$products]);
     }
-    public function store(Request $request)
+    public function store(ProductoRequest $request)
     {
         try {
             $this->product->add($request->all());

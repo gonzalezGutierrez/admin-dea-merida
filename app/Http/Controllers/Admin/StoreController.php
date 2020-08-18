@@ -8,6 +8,8 @@ use App\Models\Group;
 use App\Models\Store;
 use App\Models\Zona;
 use Illuminate\Http\Request;
+use App\Http\Requests\TiendaRequest;
+
 
 class StoreController extends Controller
 {
@@ -21,7 +23,7 @@ class StoreController extends Controller
         $stores = $this->store->getStores($status)->get();
         return view('admin.stores.index',['stores'=>$stores]);
     }
-    public function store(Request $request)
+    public function store(TiendaRequest $request)
     {
         try {
             $this->store->add($request->all());

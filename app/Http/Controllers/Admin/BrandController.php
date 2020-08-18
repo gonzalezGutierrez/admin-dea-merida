@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\Config\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MarcaRequest;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class BrandController extends Controller
         $brands = $this->brand->getBrands($status)->get();
         return view('admin.brands.index',['brands'=>$brands]);
     }
-    public function store(Request $request)
+    public function store(MarcaRequest $request)
     {
         try {
             $this->brand->add($request->all());
