@@ -25,6 +25,13 @@ class PassportController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
+        $status = $user->status;
+        if($status=="inactivo"){
+            return response()->json([
+                'message' => 'No se encontro usuario o ha sido eliminado'
+            ],401);
+        }
+
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect']
