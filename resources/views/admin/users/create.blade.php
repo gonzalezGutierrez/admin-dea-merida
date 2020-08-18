@@ -12,7 +12,7 @@
         <div class="card-body">
             <form action="{{asset('admin/usuarios')}}" method="post">
                 @csrf
-                @include('admin.users.forms.form')
+                @include('admin.users.forms.form',['edit'=>false])
                 <button class="btn btn-outline-primary btn-sm"><span class="fas fa-user-plus"></span> Registrar</button>
             </form>
         </div>

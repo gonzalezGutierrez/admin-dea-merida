@@ -52,10 +52,12 @@
             {!!Form::email('email',$user->email,['class'=>'form-control form-control-user'])!!}
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="form-group">
-            <label for="">Contraseña</label>
-            {!!Form::password('password',['class'=>'form-control form-control-user'])!!}
+    @if($edit != true)
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="">Contraseña</label>
+                {!!Form::password('password',['class'=>'form-control form-control-user'])!!}
+            </div>
         </div>
-    </div>
+    @endif
 </div>

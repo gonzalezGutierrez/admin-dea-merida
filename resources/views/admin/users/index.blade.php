@@ -4,7 +4,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <a href="/admin/usuarios/create" class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm"><i class="fas fa-user-plus fa-sm"></i> Agregar nuevo</a>
         <form action="{{asset('admin/usuarios')}}" class="d-sm-flex align-items-center justify-content-between mb-4">
-            {!! Form::select('estatus',['activo'=>'Activo','inactivo'=>'Inactivo','registrado'=>'Registrado'],'',['class'=>'form-control form-control-user']) !!}
+            {!! Form::select('estatus',['activo'=>'Activo','inactivo'=>'Inactivo'],$status,['class'=>'form-control form-control-user']) !!}
             <button type="submit" class="btn btn-outline-primary form-control-user"><span class="fas fa-search"></span></button>
         </form>
     </div>

@@ -82,7 +82,6 @@ class PassportController extends Controller
             'telefono' => $request->telefono,
             'grupo_id' => $request->grupo_id,
             'rol_id' => Rol::promotor()->id,
-            'estatus' => "activo"
         ])){
             return ["message" => "Creado correctamente"];
         }

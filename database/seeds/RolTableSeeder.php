@@ -14,5 +14,10 @@ class RolTableSeeder extends Seeder
         $rol = new \App\Models\Rol();
         $rol->nombre = 'administrador';
         $rol->save();
+
+        $rol = new \App\Models\Rol();
+        $rol->nombre = 'promotor';
+        $rol->save();
+
     }
 }
