@@ -35,30 +35,34 @@ Route::prefix('v1')->group(function () {
 
     //Rutas protegidas
     Route::group(['middleware'=>'auth:api'], function(){
-        Route::post('info_user','PassportController@info_user');
+
+        Route::get('info_user','PassportController@info_user');
 
         Route::namespace('Api')->group(function (){
 
-        //Prods
-        Route::get('productos','ProductController@index');
-        Route::get('marca/{slug}','BrandController@brand');
-        Route::get('pormarca/{slug}','BrandController@products');
+            //Prods
+            Route::get('productos','ProductController@index');
+            Route::get('marca/{slug}','BrandController@brand');
+            Route::get('pormarca/{slug}','BrandController@products');
 
-        // User
-        Route::post('zonas_activas','UserController@zonasActivas');
+            // User
+            Route::get('zonas_activas','UserController@zonasActivas');
 
-        // Ubications
-        Route::post('ubication','UbicationController@store');
-        Route::put('ubication/{id}','UbicationController@update');
-        Route::delete('ubication/{id}','UbicationController@destroy');
-        Route::get('ubication/{id}','UbicationController@show');
+            // Ubications
+            Route::post('ubication','UbicationController@store');
+            Route::put('ubication/{id}','UbicationController@update');
+            Route::delete('ubication/{id}','UbicationController@destroy');
+            Route::get('ubication/{id}','UbicationController@show');
 
-        //Images
-        Route::post('add_image','ProductImageController@store');
-        Route::delete('delete_image/{id}','ProductImageController@delete');
-        // Zonas
-        Route::get('zona/{slug}','ZonaController@tiendas');
-        Route::get('zonas','ZonaController@index');
+            //Images
+            Route::post('add_image','ProductImageController@store');
+            Route::delete('delete_image/{id}','ProductImageController@delete');
+
+            // Zonas
+            Route::get('zona/{slug}','ZonaController@tiendas');
+            Route::get('zonas','ZonaController@index');
+
+
         });
     });
 });
