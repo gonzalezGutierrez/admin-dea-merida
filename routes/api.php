@@ -18,15 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-    // Rutas libres. 
+    // Rutas libres.
     Route::namespace('Api')->group(function (){
         Route::get('grupos','GrupoController@index');
         Route::post('users','UserController@store');;
     });
-    
-    Route::post('register', "PassportController@register");
-    Route::post('login', "PassportController@login");
 
+    Route::post('register', "PassportController@register");
+    
+    Route::post('login', "PassportController@login");
 
     //Rutas protegidas
     Route::group(['middleware'=>'auth:api'], function(){
