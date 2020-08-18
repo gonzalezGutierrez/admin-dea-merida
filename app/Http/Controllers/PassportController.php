@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use App\Models\Rol;
+
 use Illuminate\Support\Facades\Auth;
 
 class PassportController extends Controller
@@ -30,7 +32,7 @@ class PassportController extends Controller
         }
 
         $token = $user->createToken('users')->accessToken;
-        
+
         return response()->json(['success' => true, 'token' => $token],
         200);
 
@@ -72,7 +74,7 @@ class PassportController extends Controller
             'apellido' => $request->apellido,
             'telefono' => $request->telefono,
             'grupo_id' => $request->grupo_id,
-            'rol_id' => 1,
+            'rol_id' => Rol::promotor()->id,
             'estatus' => "activo"
         ])){
             return ["message" => "Creado correctamente"];
