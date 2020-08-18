@@ -25,7 +25,6 @@ class ZonaRequest extends FormRequest
     {
         return [
             'nombre'=>'required',
-            'slug'=>'required',
         ];
     }
 }

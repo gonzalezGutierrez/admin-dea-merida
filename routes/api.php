@@ -46,7 +46,7 @@ Route::prefix('v1')->group(function () {
         Route::get('pormarca/{slug}','BrandController@products');
 
         // User
-        Route::post('zonas_activas','UserController@zonasActivas');
+        Route::get('zonas_activas','UserController@zonasActivas');
 
         // Ubications
         Route::post('ubication','UbicationController@store');
