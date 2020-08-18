@@ -48,4 +48,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
         // Zonas
         Route::get('zona/{slug}','Api\ZonaController@tiendas');
         Route::get('zonas','Api\ZonaController@index');
+
+        Route::post('mail_form','MailController@sendMail');
     });
