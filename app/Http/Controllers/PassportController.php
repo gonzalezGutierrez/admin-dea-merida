@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use App\Models\Group;
 use App\Models\Rol;
 
 use Illuminate\Support\Facades\Auth;
@@ -59,7 +60,9 @@ class PassportController extends Controller
     public function info_user(Request $request)
     {
         $user = auth()->user();
-        return response()->json(['res' => true, 'user' => $user],200);
+
+        $grupo =  Group::find($user->grupo_id);
+        return response()->json(['res' => true, 'user' => $user, 'grupo' => $grupo],200);
     }
 
 

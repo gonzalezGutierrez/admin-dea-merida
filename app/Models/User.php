@@ -8,9 +8,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Model 
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable;
     protected  $table = 'users';
@@ -19,6 +20,10 @@ class User extends Model
 
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     public function auth($credentials)
