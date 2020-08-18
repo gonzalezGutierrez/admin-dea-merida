@@ -31,14 +31,13 @@ Route::prefix('v1')->group(function () {
     Route::post('register', "PassportController@register");
     Route::post('login', "PassportController@login");
     Route::post('logout', "PassportController@logout");
-    Route::post('info_user','PassportController@info_user');
     Route::post('mail_form','MailController@sendMail');
 
     //Rutas protegidas
     Route::group(['middleware'=>'auth:api'], function(){
+        Route::post('info_user','PassportController@info_user');
+
         Route::namespace('Api')->group(function (){
-
-
 
         //Prods
         Route::get('productos','ProductController@index');
@@ -63,3 +62,18 @@ Route::prefix('v1')->group(function () {
         });
     });
 });
+
+
+
+
+
+Route::get('/verified-only', function(Request $request){
+
+    dd('your are verified', $request->user()->name);
+})->middleware('auth:api','verified');
+
+
+
+Route::get('/email/resend', 'Api\VerificationController@resend')->name('verification.resend');
+
+Route::get('/email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
