@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ubication;
 use App\Http\Controllers\Admin\Config\Helper;
+use App\Http\Requests\UbicacionRequest;
 
 
 class UbicationController extends Controller
@@ -15,12 +16,12 @@ class UbicationController extends Controller
         $this->ubication = new Ubication();
     }
  
-     public function store(Request $request)
+     public function store(UbicacionRequest $request)
      {
          try {
              $this->ubication->add($request->all());
              return response()->json([
-                'message' => 'Producto creado.'
+                'message' => 'Ubicación creado.'
             ],200);
          }catch (\Exception $e){
             return response()->json([
