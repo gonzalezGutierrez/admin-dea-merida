@@ -35,6 +35,7 @@ class UserController extends Controller
         try{
             $user = new User();
             $request['rol_id'] = Rol::promotor()->id;
+            $request['estatus'] = 'inactivo';
             $user->add($request->all());
             return response()->json(['msg'=>'Fuiste registrado correctamente']);
         }catch(\Exception $e){

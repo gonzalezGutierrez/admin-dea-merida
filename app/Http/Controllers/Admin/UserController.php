@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $status = $request->estatus == null ? 'activo' : $request->estatus;
         $users = $this->user->getUsers($status)->get();
-        return view('admin.users.index',['users'=>$users]);
+        return view('admin.users.index',['users'=>$users,'status'=>$status]);
     }
 
     public function create()
