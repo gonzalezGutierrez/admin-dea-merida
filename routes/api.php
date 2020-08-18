@@ -31,11 +31,12 @@ Route::prefix('v1')->group(function () {
     Route::post('register', "PassportController@register");
     Route::post('login', "PassportController@login");
     Route::post('logout', "PassportController@logout");
-    Route::get('info_user','PassportController@info_user');
     Route::post('mail_form','MailController@sendMail');
 
     //Rutas protegidas
     Route::group(['middleware'=>'auth:api'], function(){
+
+        Route::get('info_user','PassportController@info_user');
 
         Route::namespace('Api')->group(function (){
 
