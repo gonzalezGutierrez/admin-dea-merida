@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Support\Str;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,6 @@ class Zona extends Model
     public function scopeGetZonas($query,$status){
         return $query->getZonasWithStatus($status)->orderWithDateDesc();
     }
-    
     public function scopeGetZonasWithStatus($query,$status){
         return $query->where('estatus',$status);
     }
@@ -22,6 +22,9 @@ class Zona extends Model
     }
     public function getZonaWithId($idZona){
         return $this->findOrFail($idZona);
+    }
+    public function setSlug($name) {
+         return strtolower(Str::slug($name,'-'));
     }
     public function add($zona){
         return $this->create($zona);

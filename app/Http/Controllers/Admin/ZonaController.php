@@ -22,6 +22,7 @@ class ZonaController extends Controller
     }
     public function store(Request $request){
         try{
+            $request['slug'] = $this->zona->setSlug($request->nombre);
             $this->zona->add($request->all());
             alert()->success('Zona registrada correctamente', '');
             return redirect('admin/zonas');
