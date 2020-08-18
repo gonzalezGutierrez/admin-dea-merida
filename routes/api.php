@@ -31,35 +31,37 @@ Route::prefix('v1')->group(function () {
     Route::post('register', "PassportController@register");
     Route::post('login', "PassportController@login");
     Route::post('logout', "PassportController@logout");
-    Route::post('info_user','PassportController@info_user');
+    Route::get('info_user','PassportController@info_user');
     Route::post('mail_form','MailController@sendMail');
 
     //Rutas protegidas
     Route::group(['middleware'=>'auth:api'], function(){
+
         Route::namespace('Api')->group(function (){
 
+            //Prods
+            Route::get('productos','ProductController@index');
+            Route::get('marca/{slug}','BrandController@brand');
+            Route::get('pormarca/{slug}','BrandController@products');
+
+            // User
+            Route::get('zonas_activas','UserController@zonasActivas');
+
+            // Ubications
+            Route::post('ubication','UbicationController@store');
+            Route::put('ubication/{id}','UbicationController@update');
+            Route::delete('ubication/{id}','UbicationController@destroy');
+            Route::get('ubication/{id}','UbicationController@show');
+
+            //Images
+            Route::post('add_image','ProductImageController@store');
+            Route::delete('delete_image/{id}','ProductImageController@delete');
+
+            // Zonas
+            Route::get('zona/{slug}','ZonaController@tiendas');
+            Route::get('zonas','ZonaController@index');
 
 
-        //Prods
-        Route::get('productos','ProductController@index');
-        Route::get('marca/{slug}','BrandController@brand');
-        Route::get('pormarca/{slug}','BrandController@products');
-
-        // User
-        Route::get('zonas_activas','UserController@zonasActivas');
-
-        // Ubications
-        Route::post('ubication','UbicationController@store');
-        Route::put('ubication/{id}','UbicationController@update');
-        Route::delete('ubication/{id}','UbicationController@destroy');
-        Route::get('ubication/{id}','UbicationController@show');
-
-        //Images
-        Route::post('add_image','ProductImageController@store');
-        Route::delete('delete_image/{id}','ProductImageController@delete');
-        // Zonas
-        Route::get('zona/{slug}','ZonaController@tiendas');
-        Route::get('zonas','ZonaController@index');
         });
     });
 });
