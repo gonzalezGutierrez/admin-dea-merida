@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('nombre',30);
             $table->string('apellido',30);
             $table->string('telefono',13);
-
+            $table->timestamp('email_verified_at')->nullable();
             $table->integer('grupo_id')->unsigned();
             $table->integer('rol_id')->unsigned()->default(1);
 

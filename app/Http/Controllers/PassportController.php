@@ -25,7 +25,7 @@ class PassportController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        $status = $user->status;
+        $status = $user->estatus;
         if($status=="inactivo"){
             return response()->json([
                 'message' => 'No se encontro usuario o ha sido eliminado'

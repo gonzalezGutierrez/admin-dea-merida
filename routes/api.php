@@ -23,7 +23,9 @@ Route::prefix('v1')->group(function () {
     // Rutas libres.
     Route::namespace('Api')->group(function (){
         Route::get('grupos','GrupoController@index');
-        Route::post('users','UserController@store');;
+        Route::post('users','UserController@store');
+        Route::get('marcas','BrandController@index');
+
     });
 
     Route::post('register', "PassportController@register");
@@ -35,8 +37,14 @@ Route::prefix('v1')->group(function () {
     //Rutas protegidas
     Route::group(['middleware'=>'auth:api'], function(){
         Route::namespace('Api')->group(function (){
+
+
+
         //Prods
-        Route::get('marca/{slug}','BrandController@products');
+        Route::get('productos','ProductController@index');
+        Route::get('marca/{slug}','BrandController@brand');
+        Route::get('pormarca/{slug}','BrandController@products');
+
         // User
         Route::post('zonas_activas','UserController@zonasActivas');
 
