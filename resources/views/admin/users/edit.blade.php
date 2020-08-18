@@ -13,7 +13,7 @@
             <form action="{{asset('admin/usuarios/'.$user->id)}}" method="post">
                 @csrf
                 {{method_field('put')}}
-                @include('admin.users.forms.form')
+                @include('admin.users.forms.form',['edit'=>true])
                 <button class="btn btn-outline-primary btn-sm"><span class="fas fa-user-edit"></span> Actualizar</button>
             </form>
             <hr>
