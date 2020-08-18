@@ -16,6 +16,10 @@ class User extends Model
     protected  $primaryKey = 'id';
     protected  $fillable = ['email','password','nombre','apellido','telefono','grupo_id','rol_id','estatus'];
 
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
     public function auth($credentials)
     {
         if(Auth::attempt($credentials))
