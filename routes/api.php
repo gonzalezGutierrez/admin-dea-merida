@@ -73,6 +73,8 @@ Route::prefix('v1')->group(function () {
 });
 
 
+Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail');
+Route::post('/password/reset', 'Api\ResetPasswordController@reset');
 
 
 
