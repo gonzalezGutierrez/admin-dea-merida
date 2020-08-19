@@ -39,7 +39,7 @@ class UserController extends Controller
             $user->estatus = "activo";
             $user->save();
             Mail::to($user->email)->send(new NotifyStatus);
-            return 'Mensaje enviado';
+            return ["message"=>'Mensaje enviado'];
         }catch(\Exception $e){
             return $e;
         }

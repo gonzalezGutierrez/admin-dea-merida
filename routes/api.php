@@ -25,7 +25,7 @@ Route::prefix('v1')->group(function () {
         Route::get('grupos','GrupoController@index');
         Route::post('users','UserController@store');
         Route::get('marcas','BrandController@index');
-
+        Route::post('keywords','KeywordController@store');
     });
 
     Route::post('register', "PassportController@register");
@@ -64,7 +64,9 @@ Route::prefix('v1')->group(function () {
             Route::get('zona/{slug}','ZonaController@tiendas');
             Route::get('zonas','ZonaController@index');
 
+            Route::get('keywords','KeywordController@index');
 
+            // Keywords
         });
     });
 });
