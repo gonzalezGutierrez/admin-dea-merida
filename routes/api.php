@@ -76,8 +76,3 @@ Route::get('/verified-only', function(Request $request){
     dd('your are verified', $request->user()->name);
 })->middleware('auth:api','verified');
 
-
-
-Route::get('/email/resend', 'Api\VerificationController@resend')->name('verification.resend');
-
-Route::get('/email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
