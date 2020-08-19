@@ -61,8 +61,7 @@ Route::prefix('v1')->group(function () {
             // Zonas
             Route::get('zona/{slug}','ZonaController@tiendas');
             Route::get('zonas','ZonaController@index');
-
-
+            
         });
     });
 });
@@ -75,4 +74,3 @@ Route::get('/verified-only', function(Request $request){
 
     dd('your are verified', $request->user()->name);
 })->middleware('auth:api','verified');
-
