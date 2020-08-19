@@ -25,6 +25,7 @@ Route::prefix('v1')->group(function () {
         Route::get('grupos','GrupoController@index');
         Route::post('users','UserController@store');
         Route::get('marcas','BrandController@index');
+        Route::post('keyword/{id}','KeywordController@setInactive');
     });
 
     Route::post('register', "PassportController@register");
@@ -66,6 +67,7 @@ Route::prefix('v1')->group(function () {
             // Keywords
             Route::get('keywords','KeywordController@index');
             Route::post('keywords','KeywordController@store');
+            Route::put('keyword/{id}','KeywordController@update');
         });
     });
 });
