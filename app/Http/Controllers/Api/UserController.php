@@ -8,7 +8,9 @@ use App\Models\User;
 use App\Models\Rol;
 use App\Models\Zona;
 use Illuminate\Support\Facades\DB;
+use App\Mail\NotifyStatus;
 
+use Mail;
 
 use Illuminate\Http\Request;
 
@@ -28,6 +30,21 @@ class UserController extends Controller
         $zonas_id = DB::table('groups_zonas')->where('grupo_id', $user->grupo_id)->pluck('zona_id');
         $zonas = Zona::find($zonas_id);
         return $zonas;
+    }
+
+    public function NotifyUserStatus(Request $request)
+    {
+        try{
+            $user = User::find($request->user_id);
+            $user->estatus = "activo";
+            $user->save();
+            Mail::to($user->email)->send(new NotifyStatus);
+            return 'Mensaje enviado';
+        }catch(\Exception $e){
+            return $e;
+        }
+        //El usuario se obtiene con el Auth
+        
     }
 
     public function store(Request $request){
