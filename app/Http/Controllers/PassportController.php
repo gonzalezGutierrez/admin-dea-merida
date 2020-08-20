@@ -44,7 +44,6 @@ class PassportController extends Controller
         return response()->json(['success' => true, 'token' => $token],
         200);
 
-        //return $user->createToken('Auth Token')->accessToken;
     }
 
     public function logout(Request $request)

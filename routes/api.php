@@ -70,8 +70,8 @@ Route::prefix('v1')->group(function () {
             Route::put('keyword/{id}','KeywordController@update');
             Route::post('keyword/{id}','KeywordController@setInactive');
 
-            // Tienda 
-            Route::post('storesbyzone','StoreController@index');
+            // Tienda
+            Route::get('stores/{zona_id}','StoreController@index');
             Route::get('acciones','StoreController@todasLasAcciones');
 
             //Visitas

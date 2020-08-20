@@ -7,14 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Models\Action;
 use App\Models\Brand;
+use App\Models\Zona;
 
 
 
 class StoreController extends Controller
 {
-    public function index(Request $request)
+    public function index($zonaID)
     {
-        $tiendas = Store::where('zona_id',"=",$request->zona_id)->get();
+
+        $zona = Zona::findOrFail($zonaID);
+
+        $tiendas = Store::where('zona_id',$zona->id)->get();
         return response()->json(['Stores'=>$tiendas],200);
     }
 
