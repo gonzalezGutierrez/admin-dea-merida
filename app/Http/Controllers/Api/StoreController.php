@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Store;
+use App\Models\Action;
+use App\Models\Brand;
+
+
+
+class StoreController extends Controller
+{
+    public function index(Request $request)
+    {
+        $tiendas = Store::where('zona_id',"=",$request->zona_id)->get();
+        return response()->json(['Stores'=>$tiendas],200);
+    }
+
+
+    public function todasLasAcciones(Request $request)
+    {
+        $action = Action::pluck('id','accion');
+        return response()->json(['actions'=>$action],200);
+    }
+
+
+    public function todasLasMarcas(Request $request)
+    {
+        $action = Action::all();
+        return response()->json(['actions'=>$action],200);
+    }
+}

@@ -32,4 +32,42 @@ class KeywordController extends Controller
             return $e;
         }
     }
+
+    public function update(KeywordRequest $request, $id)
+    {
+        try {
+            $kw = Keyword::find($id);
+            $kw->nombre =$request->nombre;
+            $kw->save();
+            return response()->json([
+                'message' => 'Keyword actualizada.'
+            ],200);
+            // alert()->success('La cadena fue actualizada correctamente', '');
+            // return redirect('admin/cadenas');
+        }catch (\Exception $e){
+            return response()->json([
+                'error' => $e
+            ],200);
+        }
+    }
+
+
+    public function setInactive(Request $request, $id)
+    {
+        try {
+            $kw = Keyword::find($id);
+            $kw->estatus ="inactivo";
+            $kw->save();
+            return response()->json([
+                'message' => 'Keyword inactiva.'
+            ],200);
+            // alert()->success('La cadena fue actualizada correctamente', '');
+            // return redirect('admin/cadenas');
+        }catch (\Exception $e){
+            return response()->json([
+                'error' => $e
+            ],200);
+        }
+    }
+
 }
