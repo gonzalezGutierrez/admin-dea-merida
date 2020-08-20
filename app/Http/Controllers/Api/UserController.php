@@ -63,11 +63,12 @@ class UserController extends Controller
 
 
     
-    public function update( Request $request,$idUser)
+    public function update( Request $request)
     {
         try{
+            $user_auth = auth()->user();
             $user = new User();
-            $user->getUserWithId($idUser)->edit($request->all());
+            $user->getUserWithId($user_auth->id)->edit($request->all());
             // $user = new User();
             // $request['rol_id'] = Rol::promotor()->id;
             // $request['estatus'] = 'activo';
