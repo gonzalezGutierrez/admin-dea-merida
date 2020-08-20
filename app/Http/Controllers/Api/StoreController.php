@@ -18,7 +18,7 @@ class StoreController extends Controller
 
         $zona = Zona::findOrFail($zonaID);
 
-        $tiendas = Store::where('zona_id',$zona->id)->get();
+        $tiendas = Store::where('zona_id',$zona->id)->select('id','nombre')->get();
         return response()->json(['Stores'=>$tiendas],200);
     }
 
