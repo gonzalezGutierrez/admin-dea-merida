@@ -73,6 +73,9 @@ Route::prefix('v1')->group(function () {
             // Tienda 
             Route::post('storesbyzone','StoreController@index');
             Route::get('acciones','StoreController@todasLasAcciones');
+
+            //Visitas
+            Route::post('visitas','VisitasController@setVisita');
         });
     });
 });
