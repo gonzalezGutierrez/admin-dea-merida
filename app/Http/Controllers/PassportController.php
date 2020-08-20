@@ -24,25 +24,28 @@ class PassportController extends Controller
             'password' => ['required']
         ]);
 
-        $user = User::where('email', $request->email)->first();
-
-        $status = $user->estatus;
-        if($status=="inactivo"){
-            return response()->json([
-                'message' => 'Cuenta inactiva'
-            ],401);
+        try{
+            $user = User::where('email', $request->email)->first();
+            $status = $user->estatus;
+            if($status=="inactivo"){
+                return response()->json([
+                    'message' => 'Cuenta inactiva'
+                ],401);
+            }
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect']
+                ]);
+            }
+            $token = $user->createToken('users')->accessToken;
+            return response()->json(['success' => true, 'token' => $token],200);    
+        }catch(\Exception $e){
+            return response()->json(['success' => false, 'message' => "No se ha encontrado el usuario"],404);    
+            // return "usuario no existe";
         }
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect']
-            ]);
-        }
 
-        $token = $user->createToken('users')->accessToken;
-
-        return response()->json(['success' => true, 'token' => $token],
-        200);
+        
 
     }
 
