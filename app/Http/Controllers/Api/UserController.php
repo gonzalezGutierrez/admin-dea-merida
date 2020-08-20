@@ -60,4 +60,21 @@ class UserController extends Controller
         }
 
     }
+
+
+    
+    public function update( Request $request,$idUser)
+    {
+        try{
+            $user = new User();
+            $user->getUserWithId($idUser)->edit($request->all());
+            // $user = new User();
+            // $request['rol_id'] = Rol::promotor()->id;
+            // $request['estatus'] = 'activo';
+            // $user->edit($request->all());
+            return response()->json(['msg'=>'Fuiste editado correctamente'],200);
+        }catch(\Exception $e){
+            return $e;
+        }
+    }
 }

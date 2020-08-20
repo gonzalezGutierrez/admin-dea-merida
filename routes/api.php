@@ -47,6 +47,7 @@ Route::prefix('v1')->group(function () {
             // User
             Route::get('zonas_activas','UserController@zonasActivas');
             Route::post('notifystatus','UserController@NotifyUserStatus');
+            Route::put('edit_user/{idUser}','UserController@update');
 
 
             // Ubications

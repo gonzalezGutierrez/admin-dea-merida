@@ -24,7 +24,7 @@ class CreateVisitasTable extends Migration
 
             $table->integer('ubication_id')->unsigned();
             $table->foreign('ubication_id')->references('id')->on('ubications');
-            
+            $table->boolean("terminado");
             $table->timestamps();
         });
     }
