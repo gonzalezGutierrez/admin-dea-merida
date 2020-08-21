@@ -25,14 +25,14 @@ class StoreController extends Controller
 
     public function todasLasAcciones(Request $request)
     {
-        $action = Action::pluck('id','accion');
+        $action = Action::all();
         return response()->json(['actions'=>$action],200);
     }
 
 
     public function todasLasMarcas(Request $request)
     {
-        $action = Action::all();
-        return response()->json(['actions'=>$action],200);
+        $brands = Brand::all();
+        return response()->json(['brands'=>$brands],200);
     }
 }
