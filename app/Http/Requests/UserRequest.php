@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             'apellido'=>'required',
             'email'=>'required',
             'password'=>'required',
-            'password_confirmation'=>'required',
+            //'password_confirmation'=>'required',
             'telefono'=>'required',
             'grupo_id'=>'required',
         ];

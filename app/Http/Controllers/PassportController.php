@@ -38,14 +38,14 @@ class PassportController extends Controller
                 ]);
             }
             $token = $user->createToken('users')->accessToken;
-            return response()->json(['success' => true, 'token' => $token],200);    
+            return response()->json(['success' => true, 'token' => $token],200);
         }catch(\Exception $e){
-            return response()->json(['success' => false, 'message' => "No se ha encontrado el usuario"],404);    
+            return response()->json(['success' => false, 'message' => "No se ha encontrado el usuario"],404);
             // return "usuario no existe";
         }
 
 
-        
+
 
     }
 

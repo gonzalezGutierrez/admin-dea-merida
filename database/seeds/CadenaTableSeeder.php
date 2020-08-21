@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Models\Action;
 class CadenaTableSeeder extends Seeder
 {
     /**
