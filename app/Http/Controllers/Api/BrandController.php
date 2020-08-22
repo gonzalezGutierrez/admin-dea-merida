@@ -10,10 +10,17 @@ use App\Models\Brand;
 class BrandController extends Controller
 {
 
-    public function index(Request $request)
+    /*public function index(Request $request)
     {
         $brand = Brand::pluck('nombre','id');
         return  $brand;
+    }*/ 
+    public function index(Request $request)
+    {
+        $brand = Brand::all();
+        return response()->json([
+            'brands' => $brand
+        ],200);
     } 
 
     public function brand(Request $request, $slug)
