@@ -43,6 +43,7 @@ Route::prefix('v1')->group(function () {
             Route::get('productos','ProductController@index');
             Route::get('marca/{slug}','BrandController@brand');
             Route::get('pormarca/{slug}','BrandController@products');
+            Route::post('productos','BrandController@showProducts');
 
             // User
             Route::get('zonas_activas','UserController@zonasActivas');

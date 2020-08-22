@@ -29,6 +29,20 @@ class BrandController extends Controller
         return  $zona;
     }
 
+    public function showProducts(Request $request)
+    {
+        try{
+            $brands = $request->brands;
+            $pila = array();
+            for($i=0; $i<count($brands); $i++){
+                array_push($pila,Brand::find($brands[$i])->products);
+            }   
+            return $pila;
+        }catch(\Exception $e){
+            return $e;
+        }
+    }
+
     public function products(Request $request, $slug)
     {
         $products = Brand::where('slug','=', $slug)->orWhere('id', '=', $slug)->first();
