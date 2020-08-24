@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Ubication;
 use App\Models\Visita;
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\Keyword;
 use App\Models\MarcaDeVisita;
 use App\Models\AccionDeVisita;
@@ -26,12 +27,24 @@ class VisitasController extends Controller
             $actions = $request->actions;
             $brands = $request->brands;
             $pila = array();
-            // $group = $this->group->add($request->all());
+            $sentencia= "SELECT * FROM products WHERE brand_id = ";
+            $count = count($brands);
+            for($i = 0; $i<count($brands); $i++){
+                if($count == 1){
+                    $sentencia = $sentencia.$brands[$i];
+                    break;
+                }
+                if($i == 0){
+                    $sentencia = $sentencia.$brands[$i];
+                }else{
+                    $sentencia = $sentencia." OR ".$brands[$i];
+                }
+            }
+            $productos = DB::select($sentencia);
             for($i = 0; $i<count($brands); $i++){
                 $MarcaDeVisita = new MarcaDeVisita();
                 $MarcaDeVisita->visita_id =  $visita->id;
                 $MarcaDeVisita->marca_id = $brands[$i];
-                array_push($pila,Brand::find($brands[$i])->products);
                 $MarcaDeVisita->save();
             }
             for($i = 0; $i<count($actions); $i++){
@@ -42,9 +55,9 @@ class VisitasController extends Controller
             }
             
             DB::commit();
-                // alert()->success('Grupo registrado correctamente', '');
-            return response()->json(['msg'=>'Visita registrada correctamente',"Marca"=>$pila]);
-        }catch(\Exception $e){
+                // alert()->success('Grupo registrado correctamente', '');  
+            return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id]);
+        }catch(\Exception $e){  
             DB::rollback();
             // alert()->error('Ha ocurrido un error en el servidor')->persistent('Close');
             return $e;
