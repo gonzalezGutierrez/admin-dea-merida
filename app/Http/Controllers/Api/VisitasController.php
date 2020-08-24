@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Ubication;
 use App\Models\Visita;
 use App\Models\Brand;
+use App\Models\Store;
 use App\Models\Product;
 use App\Models\Keyword;
 use App\Models\MarcaDeVisita;
@@ -56,7 +57,7 @@ class VisitasController extends Controller
             
             DB::commit();
                 // alert()->success('Grupo registrado correctamente', '');  
-            return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id]);
+            return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id,"zona_id"=>Store::find($request->tienda_id)->id]);
         }catch(\Exception $e){  
             DB::rollback();
             // alert()->error('Ha ocurrido un error en el servidor')->persistent('Close');
