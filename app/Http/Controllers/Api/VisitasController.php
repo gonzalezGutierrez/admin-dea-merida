@@ -25,11 +25,13 @@ class VisitasController extends Controller
             $visita = Visita::create(["user_id"=>$user->id,"tienda_id"=>$request->tienda_id,"ubication_id"=> $ubication->id,"terminado"=>false]);
             $actions = $request->actions;
             $brands = $request->brands;
+            $pila = array();
             // $group = $this->group->add($request->all());
             for($i = 0; $i<count($brands); $i++){
                 $MarcaDeVisita = new MarcaDeVisita();
                 $MarcaDeVisita->visita_id =  $visita->id;
                 $MarcaDeVisita->marca_id = $brands[$i];
+                array_push($pila,Brand::find($brands[$i])->products);
                 $MarcaDeVisita->save();
             }
             for($i = 0; $i<count($actions); $i++){
@@ -38,10 +40,10 @@ class VisitasController extends Controller
                 $AccionDeVisita->accion_id = $actions[$i];
                 $AccionDeVisita->save();
             }
+            
             DB::commit();
                 // alert()->success('Grupo registrado correctamente', '');
-            return response()->json(['msg'=>'Visita registrada correctamente',
-            "Marca"=>Brand::find($brands)]);
+            return response()->json(['msg'=>'Visita registrada correctamente',"Marca"=>$pila]);
         }catch(\Exception $e){
             DB::rollback();
             // alert()->error('Ha ocurrido un error en el servidor')->persistent('Close');

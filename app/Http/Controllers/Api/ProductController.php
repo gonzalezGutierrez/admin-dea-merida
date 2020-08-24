@@ -8,9 +8,16 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index()
+    /*public function index()
     {
         $products = Product::pluck('nombre','id','slug');
+        return response()->json([
+            'products' => $products
+        ],200);
+    }*/
+    public function index()
+    {
+        $products = Product::all();
         return response()->json([
             'products' => $products
         ],200);
