@@ -23,6 +23,15 @@ class BrandController extends Controller
         ],200);
     } 
 
+    public function brandsbyarray(Request $request)
+    {
+        $brands = $request->brands;
+        $brands = Brand::find($brands);
+        return response()->json([
+            'brands' => $brands
+        ],200);
+    } 
+
     public function brand(Request $request, $slug)
     {
         $zona = Brand::where('slug','=', $slug)->orWhere('id', '=', $slug)->first();

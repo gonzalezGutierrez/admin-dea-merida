@@ -45,6 +45,9 @@ Route::prefix('v1')->group(function () {
             Route::get('pormarca/{slug}','BrandController@products');
             Route::post('productos','BrandController@showProducts');
 
+            //Category
+            Route::post('brandsbyarray','BrandController@brandsbyarray');
+
             // User
             Route::get('zonas_activas','UserController@zonasActivas');
             Route::post('notifystatus','UserController@NotifyUserStatus');
