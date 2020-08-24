@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\Config\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MarcaRequest;
-
+use Illuminate\Support\Str;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -24,6 +24,7 @@ class BrandController extends Controller
     public function store(MarcaRequest $request)
     {
         try {
+            $request['slug'] = strtolower(Str::slug($request->nombre,'-'));
             $this->brand->add($request->all());
             alert()->success('marca registrada correctamente', '');
             return redirect('admin/marcas');
