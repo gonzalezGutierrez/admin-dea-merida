@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Requests\ProductoRequest;
 
 class ProductController extends Controller
@@ -24,6 +25,7 @@ class ProductController extends Controller
     public function store(ProductoRequest $request)
     {
         try {
+            $request['slug'] = strtolower(Str::slug($request->nombre,'-'));
             $this->product->add($request->all());
             alert()->success('Producto registrado correctamente', '');
             return redirect('admin/productos');
