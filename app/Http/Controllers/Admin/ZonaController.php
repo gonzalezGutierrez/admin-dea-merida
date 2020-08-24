@@ -7,7 +7,6 @@ use App\Models\Zona;
 use Illuminate\Http\Request;
 use App\Http\Requests\ZonaRequest;
 
-
 class ZonaController extends Controller
 {
     public function  __construct()
@@ -22,7 +21,7 @@ class ZonaController extends Controller
     public function show($idZona){
         return $this->zona->getZonaWithId($idZona);
     }
-    
+
     public function store(ZonaRequest $request){
         try{
             $request['slug'] = $this->zona->setSlug($request->nombre);

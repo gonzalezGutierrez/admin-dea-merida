@@ -25,7 +25,6 @@ class ProductoRequest extends FormRequest
     {
         return [
             'nombre'=>'required',
-            'slug'=>'required',
             'brand_id'=>'required',
             'codigo'=>'required',
         ];
