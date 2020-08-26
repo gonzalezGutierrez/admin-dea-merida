@@ -25,7 +25,10 @@ Route::prefix('v1')->group(function () {
         Route::get('grupos','GrupoController@index');
         Route::post('users','UserController@store');
         Route::get('marcas','BrandController@index');
+        Route::post('upload-file','VisitasController@uploadFile');
     });
+
+
 
     Route::post('register', "PassportController@register");
     Route::post('login', "PassportController@login");

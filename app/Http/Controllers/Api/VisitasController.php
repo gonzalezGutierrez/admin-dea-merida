@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ubication;
@@ -54,16 +54,34 @@ class VisitasController extends Controller
                 $AccionDeVisita->accion_id = $actions[$i];
                 $AccionDeVisita->save();
             }
-            
+
             DB::commit();
-                // alert()->success('Grupo registrado correctamente', '');  
+                // alert()->success('Grupo registrado correctamente', '');
             return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id,"zona_id"=>Store::find($request->tienda_id)->zona->id]);
-        }catch(\Exception $e){  
+        }catch(\Exception $e){
             DB::rollback();
             // alert()->error('Ha ocurrido un error en el servidor')->persistent('Close');
             return $e;
         }
         return $request;
-        
+
+    }
+
+    public function uploadFile(Request $request) {
+        try {
+
+            $image = $request->image;
+            $image = str_replace('data:image/png;base64,', '', $image);
+
+            $image = str_replace(' ', '+', $image);
+            $imageName = time() . '.png';
+
+            Storage::disk('local')->put($imageName, base64_decode($image));
+
+            return response()->json('La imagen se subio correctamente',201);
+        }catch (\Exception $e) {
+            return response()->json("Error al guardar la imagen , Error: ".$e->getMessage(),500);
+        }
+
     }
 }
