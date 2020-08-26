@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => public_path('imagenes-visitas'),
+            'root' => storage_path('app/public'),
         ],
 
         'public' => [

@@ -11,7 +11,6 @@ class VisitFormController extends Controller
     {   
         try{
             $value = $request->getContent();
-            return dd($value);
             $user = auth()->user();
             $name = "report.pdf";
             view()->share('data',$results);

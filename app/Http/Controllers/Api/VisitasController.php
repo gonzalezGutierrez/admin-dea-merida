@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Ubication;
+use App\Models\VisitImage;
 use App\Models\Visita;
 use App\Models\Brand;
 use App\Models\Store;
@@ -66,16 +66,12 @@ class VisitasController extends Controller
 
     public function uploadFile(Request $request) {
         try {
-
             $image = $request->image;
             $image = str_replace('data:image/png;base64,', '', $image);
-
             $image = str_replace(' ', '+', $image);
-            $imageName = time() . '.png';
-
+            $imageName = 'imagenes-visitas/'.time() . '.png';
+            VisitImage::create(["visita_id"=>$request->visita_id,"url"=>$imageName]);
             Storage::disk('local')->put($imageName, base64_decode($image));
-
-            return response()->json('La imagen se subio correctamente',201);
         }catch (\Exception $e) {
             return response()->json("Error al guardar la imagen , Error: ".$e->getMessage(),500);
         }
