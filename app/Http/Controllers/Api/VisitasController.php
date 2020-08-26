@@ -56,14 +56,12 @@ class VisitasController extends Controller
 
             DB::commit();
             // alert()->success('Grupo registrado correctamente', '');
-            return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id,"zona_id"=>Store::find($request->tienda_id)->zona->id]);
+            return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id,"zona_id"=>Store::find($request->tienda_id)->zona->id],201);
         }catch(\Exception $e){
             DB::rollback();
             // alert()->error('Ha ocurrido un error en el servidor')->persistent('Close');
             return $e;
         }
-        return $request;
-
     }
 
     public function uploadFile(Request $request) {
