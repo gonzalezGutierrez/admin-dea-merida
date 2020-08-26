@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Ubication;
+use App\Models\VisitImage;
 use App\Models\Visita;
 use App\Models\Brand;
 use App\Models\Store;
@@ -23,8 +23,7 @@ class VisitasController extends Controller
         DB::beginTransaction();
         try {
             $user = auth()->user();
-            $ubication = Ubication::create(["latitud"=>$request->latitud,"longitud"=>$request->longitud]);
-            $visita = Visita::create(["user_id"=>$user->id,"tienda_id"=>$request->tienda_id,"ubication_id"=> $ubication->id,"terminado"=>false]);
+            $visita = Visita::create(["user_id"=>$user->id,"tienda_id"=>$request->tienda_id,"terminado"=>false]);
             $actions = $request->actions;
             $brands = $request->brands;
             $pila = array();
@@ -56,29 +55,23 @@ class VisitasController extends Controller
             }
 
             DB::commit();
-                // alert()->success('Grupo registrado correctamente', '');
-            return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id,"zona_id"=>Store::find($request->tienda_id)->zona->id]);
+            // alert()->success('Grupo registrado correctamente', '');
+            return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id,"zona_id"=>Store::find($request->tienda_id)->zona->id],201);
         }catch(\Exception $e){
             DB::rollback();
             // alert()->error('Ha ocurrido un error en el servidor')->persistent('Close');
             return $e;
         }
-        return $request;
-
     }
 
     public function uploadFile(Request $request) {
         try {
-
             $image = $request->image;
             $image = str_replace('data:image/png;base64,', '', $image);
-
             $image = str_replace(' ', '+', $image);
-            $imageName = time() . '.png';
-
+            $imageName = 'imagenes-visitas/'.time() . '.png';
+            VisitImage::create(["visita_id"=>$request->visita_id,"url"=>$imageName]);
             Storage::disk('local')->put($imageName, base64_decode($image));
-
-            return response()->json('La imagen se subio correctamente',201);
         }catch (\Exception $e) {
             return response()->json("Error al guardar la imagen , Error: ".$e->getMessage(),500);
         }
