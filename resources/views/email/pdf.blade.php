@@ -29,7 +29,7 @@
                 @foreach($data ?? '' as $item)
                 <tr>
                     <td scope="row">{{ $item->name }}</td>
-                    <td>{{ $item->   }}</td>
+                    <td>{{ $item->brand }}</td>
                     <td>{{ $item->quantity }}</td>
                     <td>{{ $item->quantity * $item->price }}</td>
                 </tr>
