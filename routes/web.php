@@ -33,6 +33,7 @@ Route::namespace('Admin')->group(function(){
         Route::resource('marcas','BrandController');
         Route::resource('cadenas','ChainStoreController');
         Route::resource('tiendas','StoreController');
+        Route::resource('palabras-claves','KeyWordController');
     });
 
 });
