@@ -135,6 +135,12 @@
                 <span>Cadenas</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/palabras-claves">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Palabras claves</span></a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
