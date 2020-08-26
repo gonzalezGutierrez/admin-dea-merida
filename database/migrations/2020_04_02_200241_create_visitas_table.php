@@ -21,9 +21,6 @@ class CreateVisitasTable extends Migration
 
             $table->integer('tienda_id')->unsigned();
             $table->foreign('tienda_id')->references('id')->on('stores');
-
-            $table->integer('ubication_id')->unsigned();
-            $table->foreign('ubication_id')->references('id')->on('ubications');
             $table->boolean("terminado");
             $table->timestamps();
         });

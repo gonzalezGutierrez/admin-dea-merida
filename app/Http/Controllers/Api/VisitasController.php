@@ -23,8 +23,7 @@ class VisitasController extends Controller
         DB::beginTransaction();
         try {
             $user = auth()->user();
-            $ubication = Ubication::create(["latitud"=>$request->latitud,"longitud"=>$request->longitud]);
-            $visita = Visita::create(["user_id"=>$user->id,"tienda_id"=>$request->tienda_id,"ubication_id"=> $ubication->id,"terminado"=>false]);
+            $visita = Visita::create(["user_id"=>$user->id,"tienda_id"=>$request->tienda_id,"terminado"=>false]);
             $actions = $request->actions;
             $brands = $request->brands;
             $pila = array();
@@ -56,7 +55,7 @@ class VisitasController extends Controller
             }
 
             DB::commit();
-                // alert()->success('Grupo registrado correctamente', '');
+            // alert()->success('Grupo registrado correctamente', '');
             return response()->json(['msg'=>'Visita registrada correctamente',"productos"=>$productos,"visita_id"=>$visita->id,"zona_id"=>Store::find($request->tienda_id)->zona->id]);
         }catch(\Exception $e){
             DB::rollback();
