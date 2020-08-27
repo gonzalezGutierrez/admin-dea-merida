@@ -204,15 +204,19 @@
                     <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
+                            <i class="fas fa-user fa-fw"></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
+                            <span class="badge badge-danger badge-counter">{{$newUsers->count()}}</span>
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                             <h6 class="dropdown-header">
                                 Nuevos promotores registrados
                             </h6>
+
+                            @foreach($newUsers as $newUser)
+                                <a class="dropdown-item text-center small text-gray-500" href="{{asset('admin/usuarios/'.$newUser->id.'/edit')}}">{{$newUser->nombre}} {{$newUser->apellido}}</a>
+                            @endforeach
 
                             <a class="dropdown-item text-center small text-gray-500" href="#">Ver todos</a>
                         </div>
