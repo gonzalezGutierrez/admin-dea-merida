@@ -30,7 +30,7 @@ class VisitFormMail extends Mailable
     public function build()
     {
         $attachmentFile = public_path() . '/' . 'report.pdf';
-        return $this->subject('Aviso de activación')
+        return $this->subject('Reporte de visita')
             ->view('email.email')
             ->attach($attachmentFile, [
                 'as' => 'report.pdf',

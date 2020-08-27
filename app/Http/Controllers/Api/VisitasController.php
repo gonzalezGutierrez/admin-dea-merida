@@ -72,6 +72,7 @@ class VisitasController extends Controller
             $imageName = 'imagenes-visitas/'.time() . '.png';
             VisitImage::create(["visita_id"=>$request->visita_id,"url"=>$imageName]);
             Storage::disk('local')->put($imageName, base64_decode($image));
+            return response()->json(["message"=>"Almacenada con exito"],201);
         }catch (\Exception $e) {
             return response()->json("Error al guardar la imagen , Error: ".$e->getMessage(),500);
         }
