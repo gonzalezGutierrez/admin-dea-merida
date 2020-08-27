@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\VisitForm;
-
+use PDF;
+use Mail;
 
 class VisitFormController extends Controller
 {
@@ -23,14 +24,13 @@ class VisitFormController extends Controller
                 $VisitForm = VisitForm::create($VisitFormData);
                 return response()->json(['visita_id'=>$data["visita_id"]],201);
             }
-
-            $user = auth()->user();
             $name = "report.pdf";
-            // view()->share('data',$results);
-            // $pdf = PDF::loadView('PDF.pdf');
-            // $pdf->save($name);
+            view()->share('data',$results);
+            $pdf = PDF::loadView('email.report');
+            $pdf->save($name);
             // Mail::to($user->email)
             // ->send(new \App\Mail\VisitFormMail($name));
+            
         }catch (\Exception $e){
             // alert()->error($e->getMessage(),'Ha ocurrido un error en el servidor')->persistent('Close');
             // return back();
