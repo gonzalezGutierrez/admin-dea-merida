@@ -19,36 +19,32 @@
                     <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Apellido</th>
                         <th>Correo</th>
                         <th>Grupo</th>
                         <th>Rol</th>
                         <th>Telefono</th>
-                        <th>Estatus</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($users as $user)
-                        <tr>
-                            <td>{{$user->nombre}}</td>
-                            <td>{{$user->apellido}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->grupo->nombre}}</td>
-                            <td>{{$user->rol->nombre}}</td>
-                            <td>{{$user->telefono}}</td>
-                            <td>{{$user->estatus}}</td>
-                            <td>
-                                <a href="{{asset('admin/usuarios/'.$user->id.'/edit')}}" class="btn btn-outline-info btn-sm"><span class="fas fa-edit"></span> Actualiar</a>
-                                <form action="{{asset('admin/usuarios/'.$user->id)}}" method="post" class="form-inline-block @if($user->estatus == 'inactivo') display-none @endif">
-                                    @csrf
-                                    <input type="hidden" name="DESTROY_ACTION" value="false">
-                                    {{method_field('delete')}}
-                                    <button type="submit" class="btn btn-sm btn-outline-danger"> <span class="fas fa-trash"></span> Dar de baja</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
+                        @foreach($users as $user)
+                            <tr>
+                                <td>{{$user->nombre}} {{$user->apellido}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->grupo->nombre}}</td>
+                                <td>{{$user->rol->nombre}}</td>
+                                <td>{{$user->telefono}}</td>
+                                <td>
+                                    <a href="{{asset('admin/usuarios/'.$user->id.'/edit')}}" class="btn btn-outline-info btn-sm"><span class="fas fa-edit"></span> Actualiar</a>
+                                    <form action="{{asset('admin/usuarios/'.$user->id)}}" method="post" class="form-inline-block @if($user->estatus == 'inactivo') display-none @endif">
+                                        @csrf
+                                        <input type="hidden" name="DESTROY_ACTION" value="false">
+                                        {{method_field('delete')}}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger"> <span class="fas fa-trash"></span> Dar de baja</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
