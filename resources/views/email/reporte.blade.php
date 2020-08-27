@@ -450,7 +450,8 @@
                                                                                                 <div
                                                                                                     style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:25px;text-align:left">
                                                                                                     <p style="padding: 0; margin: 0;">
-                                                                                                        Jesús Alberto Gonzalez Gutierrez
+                                                                                                    {{ $correo["nombre"]  }}
+
                                                                                                     </p>
                                                                                                     <span
                                                                                                         class="mso-font-fix-arial">
@@ -542,7 +543,7 @@
                                                                                                                             style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:25px;text-align:left">
                                                                                                                             <p
                                                                                                                                 style="padding: 0; margin: 0;">
-                                                                                                                                LAGUNITAS POLANCO
+                                                                                                                                {{ $correo["tienda_nombre"]  }}
                                                                                                                             </p>
                                                                                                                             <span
                                                                                                                                 class="mso-font-fix-arial">
@@ -681,7 +682,7 @@
                                                                                                                             style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:25px;text-align:left">
                                                                                                                             <p
                                                                                                                                 style="padding: 0; margin: 0;">
-                                                                                                                                167
+                                                                                                                                {{ $correo["tienda_numero"]  }}
                                                                                                                             </p>
                                                                                                                             <span
                                                                                                                                 class="mso-font-fix-arial">
@@ -797,7 +798,7 @@
                                                                                                                             style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:25px;text-align:left">
                                                                                                                             <p
                                                                                                                                 style="padding: 0; margin: 0;">
-                                                                                                                                Guadalajara
+                                                                                                                                {{ $correo["ciudad"]  }}
                                                                                                                             </p>
                                                                                                                             <span
                                                                                                                                 class="mso-font-fix-arial">
@@ -913,7 +914,8 @@
                                                                                                                             style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:25px;text-align:left">
                                                                                                                             <p
                                                                                                                                 style="padding: 0; margin: 0;">
-                                                                                                                                Jalisco
+                                                                                                                                {{ $correo["estado"]  }}
+
                                                                                                                             </p>
                                                                                                                             <span
                                                                                                                                 class="mso-font-fix-arial">
@@ -1029,7 +1031,7 @@
                                                                                                                             style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:18px;text-align:left">
                                                                                                                             <p
                                                                                                                                 style="padding: 0; margin: 0;">
-                                                                                                                                Lagunitas</span></em>
+                                                                                                                                {{ $correo["cadena"]  }}</span></em>
                                                                                                                             </p>
                                                                                                                             <span
                                                                                                                                 class="mso-font-fix-arial">
@@ -1145,7 +1147,7 @@
                                                                                                                             style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:18px;text-align:left">
                                                                                                                             <p
                                                                                                                                 style="padding: 0; margin: 0;">
-                                                                                                                                23/03/2020</span></em>
+                                                                                                                                {{ $correo["fecha"]  }}
                                                                                                                             </p>
                                                                                                                             <span
                                                                                                                                 class="mso-font-fix-arial">
@@ -1260,10 +1262,11 @@
                                                                                                                         style="padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px">
                                                                                                                         <div
                                                                                                                             style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:18px;text-align:left">
-                                                                                                                            <p
-                                                                                                                                style="padding: 0; margin: 0;">
-                                                                                                                                Niagará <br>
-                                                                                                                                Reynera</span></em>
+                                                                                                                            <p style="padding: 0; margin: 0;">
+                                                                                                                            @foreach($correo["marcas"] as $marca)
+                                                                                                                                {{$marca->nombre}} <br>
+                                                                                                                            @endforeach
+                                                                                                                            </span></em>
                                                                                                                             </p>
                                                                                                                             <span
                                                                                                                                 class="mso-font-fix-arial">
@@ -1377,12 +1380,10 @@
                                                                                                                         style="padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px">
                                                                                                                         <div
                                                                                                                             style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;color:#131313;line-height:18px;text-align:left">
-                                                                                                                            <p
-                                                                                                                                style="padding: 0; margin: 0;">
-                                                                                                                                Acomodo <br>
-                                                                                                                                Limpieza <br>
-                                                                                                                                Relleno de anaquel <br>
-                                                                                                                                Inventario <br>
+                                                                                                                            <p style="padding: 0; margin: 0;">
+                                                                                                                            @foreach($correo["acciones"] as $accion)
+                                                                                                                                {{$accion->accion}} <br>
+                                                                                                                            @endforeach  
                                                                                                                             </span></em>
                                                                                                                             </p>
                                                                                                                             <span

@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 use App\Mail\Report;
 use App\Models\User;
 use App\Models\Visita;
+use App\Models\Brand;
+use App\Models\AccionDeVisita;
+use App\Models\Action;
+use App\Models\MarcaDeVisita;
+use Illuminate\Support\Collection;
+use App\Http\Resources\ActionsCollection;
+use App\Http\Resources\MarcasCollection;
+
 
 
 
@@ -36,16 +44,17 @@ class MailController extends Controller
         ->send(new \App\Mail\VisitFormMail($name));
     }
     public function ViewFormMail(Request $request)
-    {
-        // $user = auth()->user();
-        $asd = Visita::find(3);
-        return  $asd->tienda->nombre;
-        $correo = ["nombre"=>$user->nombre." ".$user->apellido,"tienda_nombre"=>$asd->tienda->nombre];
-        $visita_id = 1;
-        $tienda = Visita::find(1);
+    {        
         $user = User::find(2);
-        $correo = ["nombre"=>$user->nombre." ".$user->apellido];
-
-        return view('email.reporte');
+        $visita = Visita::find(3);
+        $marcas = MarcaDeVisita::where("visita_id",$visita->id)->get();
+        //return Brand::find($marcas->map->only(['marca_id'])) ;
+        $acciones = AccionDeVisita::where("visita_id",$visita->id)->get();
+        //return Action::find($acciones->map->only(['accion_id']))->map->only(['accion']);          var_dump(Brand::find($marcas->map->only(['marca_id']))->map->only(['nombre']))        var_dump(Action::find($acciones->map->only(['accion_id']))->map->only(['accion']))
+        // return $acciones->only(["id"]);
+        // return Action::where("id",$acciones->map->only(['accion_id']))->get();
+        $correo = ["nombre"=>$user->nombre." ".$user->apellido,"tienda_nombre"=>$visita->tienda->nombre,"tienda_numero"=>$visita->tienda->numero_tienda,
+        "ciudad"=>"Tuxtla","estado"=>"Chiapas","cadena"=>$visita->tienda->cadena->nombre,"fecha"=>$visita->created_at,'marcas'=>Brand::find($marcas->map->only(['marca_id'])) ,'acciones'=>Action::find($acciones->map->only(['accion_id']))];
+        return view('email.reporte')->with(['correo'=>$correo]);
     }
 }
