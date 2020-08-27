@@ -26,7 +26,6 @@ Route::prefix('v1')->group(function () {
         Route::post('users','UserController@store');
         Route::get('marcas','BrandController@index');
         Route::post('visit-form','VisitFormController@newVisitForm');
-        Route::post('upload-file','VisitasController@uploadFile');
     });
 
 
@@ -84,6 +83,7 @@ Route::prefix('v1')->group(function () {
 
             //Visitas
             Route::post('visitas','VisitasController@setVisita');
+            Route::post('upload-file','VisitasController@uploadFile');
         });
     });
 });

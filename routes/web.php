@@ -42,6 +42,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('reporte', "MailController@ViewFormMail");
 
 
 Route::get('/email/resend', 'Api\VerificationController@resend')->name('verification.resend');
