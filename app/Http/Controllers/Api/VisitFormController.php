@@ -20,7 +20,7 @@ class VisitFormController extends Controller
         try{
             $user = auth()->user();
             $final = $request->all()["final"];
-            $data= $request->all()["data"];
+            $data = $request->all()["data"];
             if(!$final){
                 $VisitFormData = ["product_id"=>$data["producto_id"],"visita_id"=>$data["visita_id"],"exhibido"=>$data["exhibido"],
                 "agotado"=>$data["agotado"],"cumple_panorama"=>$data["cumple_panorama"],"tiene_promocion"=>$data["tiene_promocion"],

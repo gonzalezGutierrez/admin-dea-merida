@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 //Auth::routes();
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 
@@ -34,6 +34,7 @@ Route::namespace('Admin')->group(function(){
         Route::resource('cadenas','ChainStoreController');
         Route::resource('tiendas','StoreController');
         Route::resource('palabras-claves','KeyWordController');
+        Route::get('visitas_activas','StoreController@ActiveVisits');
     });
 
 });

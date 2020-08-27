@@ -7,6 +7,7 @@ use App\Models\Chain;
 use App\Models\Group;
 use App\Models\Store;
 use App\Models\Zona;
+use App\Models\Visita;
 use Illuminate\Http\Request;
 use App\Http\Requests\TiendaRequest;
 
@@ -37,6 +38,11 @@ class StoreController extends Controller
     public function show($id)
     {
         //
+    }
+    public function ActiveVisits()
+    {
+        $visitas = Visita::where("terminado",true)->get();
+        return view('admin.visits.index',['visitas'=>$visitas]);
     }
     public function update(Request $request, $idStore)
     {

@@ -76,6 +76,5 @@ class VisitasController extends Controller
         }catch (\Exception $e) {
             return response()->json("Error al guardar la imagen , Error: ".$e->getMessage(),500);
         }
-
     }
 }
