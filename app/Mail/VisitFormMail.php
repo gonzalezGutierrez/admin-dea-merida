@@ -12,16 +12,14 @@ class VisitFormMail extends Mailable
     use Queueable, SerializesModels;
 
     public $subject = "recibido";
-    public $visita;
-
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($visita)
+    public function __construct()
     {
-        $this->visita = $visita;
+        
     }
 
     /**
@@ -31,6 +29,12 @@ class VisitFormMail extends Mailable
      */
     public function build()
     {
-        return $this->view('email.visit');
+        $attachmentFile = public_path() . '/' . 'report.pdf';
+        return $this->subject('Aviso de activación')
+            ->view('email.email')
+            ->attach($attachmentFile, [
+                'as' => 'report.pdf',
+                'mime' => 'application/pdf',
+        ]);
     }
 }
