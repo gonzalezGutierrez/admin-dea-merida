@@ -19,22 +19,20 @@
                     <thead>
                     <tr>
                         <th>Nombre de promotor</th>
-                        <th>Estatus</th>
-                        <th>Acciones</th>
+                        <th>Tienda</th>
+                        <th>Ver reporte</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($visitas as $visit)
                         <tr>
-                            <td>{{ $visit->user->nombre }} {{ $visit->apellido }}</td>
-                            <td>{{$visit->terminado}}</td>
+                            <td>{{ $visit->user->nombre }} {{ $visit->user->apellido }}</td>
+                            <td>{{$visit->tienda->nombre}}</td>
                             <td>
-                                <a href="" class="btn btn-outline-info btn-sm"><span class="fas fa-edit"></span> Actualiar</a>
+                                <a href="" class="btn btn-outline-info btn-sm"><span class="fas fa-edit"></span> Ver</a>
                                 <form action="" method="post" class="form-inline-block display-none ">
                                     @csrf
                                     <input type="hidden" name="DESTROY_ACTION" value="false">
-                                    {{method_field('delete')}}
-                                    <button type="submit" class="btn btn-sm btn-outline-danger"> <span class="fas fa-trash"></span> Dar de baja</button>
                                 </form>
                             </td>
                         </tr>

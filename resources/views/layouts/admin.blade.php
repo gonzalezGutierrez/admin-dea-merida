@@ -141,6 +141,12 @@
                 <span>Palabras claves</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/visitas_activas">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Visitas activas</span></a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
