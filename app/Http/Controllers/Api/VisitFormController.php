@@ -32,6 +32,8 @@ class VisitFormController extends Controller
                 return response()->json(['visita_id'=>$data["visita_id"]],201);
             }
             $visita = Visita::find($data["visita_id"]);
+            $visita->terminado = true;
+            $visita->save();
             $marcas = MarcaDeVisita::where("visita_id",$visita->id)->get();
             $acciones = AccionDeVisita::where("visita_id",$visita->id)->get();
             $correo = ["nombre"=>$user->nombre." ".$user->apellido,"tienda_nombre"=>$visita->tienda->nombre,"tienda_numero"=>$visita->tienda->numero_tienda,
