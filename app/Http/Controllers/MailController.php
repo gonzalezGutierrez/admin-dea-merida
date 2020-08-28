@@ -54,7 +54,8 @@ class MailController extends Controller
         // return $acciones->only(["id"]);
         // return Action::where("id",$acciones->map->only(['accion_id']))->get();
         $correo = ["nombre"=>$user->nombre." ".$user->apellido,"tienda_nombre"=>$visita->tienda->nombre,"tienda_numero"=>$visita->tienda->numero_tienda,
-        "ciudad"=>"Tuxtla","estado"=>"Chiapas","cadena"=>$visita->tienda->cadena->nombre,"fecha"=>$visita->created_at,'marcas'=>Brand::find($marcas->map->only(['marca_id'])) ,'acciones'=>Action::find($acciones->map->only(['accion_id']))];
+        "ciudad"=>"Tuxtla","estado"=>"Chiapas","cadena"=>$visita->tienda->cadena->nombre,"fecha"=>$visita->created_at,'marcas'=>Brand::find($marcas->map->only(['marca_id'])),
+        'acciones'=>Action::find($acciones->map->only(['accion_id']))];
         return view('email.reporte')->with(['correo'=>$correo]);
     }
 }
