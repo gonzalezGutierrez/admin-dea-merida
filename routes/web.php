@@ -35,6 +35,7 @@ Route::namespace('Admin')->group(function(){
         Route::resource('tiendas','StoreController');
         Route::resource('palabras-claves','KeyWordController');
         Route::get('visitas_activas','StoreController@ActiveVisits');
+        Route::get('reporte/{id}','ReportController@show');
     });
 
 });
