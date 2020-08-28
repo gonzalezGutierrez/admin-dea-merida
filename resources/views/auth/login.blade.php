@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Grupo Promo - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -65,14 +65,8 @@
                                     </button>
                                     <hr>
                                 </form>
-                                    <a class="small" href="register.html">Crear cuenta</a>
 
-                                    @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                    @endif
-                                    
+
                                 </div>
                             </div>
                         </div>
