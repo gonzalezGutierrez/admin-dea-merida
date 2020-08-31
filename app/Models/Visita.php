@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Visita extends Model
 {
     protected $table = 'visitas';
-    protected $fillable = ['user_id','tienda_id','terminado'];
+    protected $fillable = ['user_id','tienda_id','terminado','ubicacion','latitud','longitud'];
 
     public function tienda()
     {
