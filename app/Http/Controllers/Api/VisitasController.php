@@ -23,7 +23,7 @@ class VisitasController extends Controller
         DB::beginTransaction();
         try {
             $user = auth()->user();
-            $visita = Visita::create(["user_id"=>$user->id,"tienda_id"=>$request->tienda_id,"terminado"=>false,"ubicación"=>$request->ubicación,"latitud"=>$request->latitud,"logitud"=>$request->logitud]);
+            $visita = Visita::create(["user_id"=>$user->id,"tienda_id"=>$request->tienda_id,"terminado"=>false,"ubicacion"=>$request->ubicacion,"latitud"=>$request->latitud,"logitud"=>$request->logitud]);
             $actions = $request->actions;
             $brands = $request->brands;
             $pila = array();
